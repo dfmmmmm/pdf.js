@@ -175,26 +175,8 @@ function getViewerConfiguration() {
   };
 }
 
-function webViewerLoad() {
-  let config = getViewerConfiguration();
-  if (typeof PDFJSDev === 'undefined' || !PDFJSDev.test('PRODUCTION')) {
-    Promise.all([
-      SystemJS.import('pdfjs-web/app'),
-      SystemJS.import('pdfjs-web/genericcom'),
-      SystemJS.import('pdfjs-web/pdf_print_service'),
-    ]).then(function([app, ...otherModules]) {
-      window.PDFViewerApplication = app.PDFViewerApplication;
-      app.PDFViewerApplication.run(config);
-    });
-  } else {
-    window.PDFViewerApplication = pdfjsWebApp.PDFViewerApplication;
-    pdfjsWebApp.PDFViewerApplication.run(config);
-  }
-}
-
-if (document.readyState === 'interactive' ||
-    document.readyState === 'complete') {
-  webViewerLoad();
-} else {
-  document.addEventListener('DOMContentLoaded', webViewerLoad, true);
+window.PdfwebViewerLoad = function() {
+  var config = getViewerConfiguration();
+  window.PDFViewerApplication = pdfjsWebApp.PDFViewerApplication;
+  pdfjsWebApp.PDFViewerApplication.run(config);
 }

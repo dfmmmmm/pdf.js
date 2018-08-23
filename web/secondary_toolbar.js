@@ -141,7 +141,7 @@ class SecondaryToolbar {
     for (let button in this.buttons) {
       let { element, eventName, close, eventDetails, } = this.buttons[button];
 
-      element.addEventListener('click', (evt) => {
+      element && element.addEventListener('click', (evt) => {
         if (eventName !== null) {
           let details = { source: this, };
           for (let property in eventDetails) {

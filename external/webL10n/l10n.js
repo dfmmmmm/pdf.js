@@ -63,7 +63,7 @@ document.webL10n = (function(window, document, undefined) {
    */
 
   function getL10nResourceLinks() {
-    return document.querySelectorAll('link[type="application/l10n"]');
+    return [{ href: PDFJS.l10nUrl }];
   }
 
   function getL10nDictionary() {

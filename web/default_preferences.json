@@ -17,6 +17,6 @@
   "renderer": "canvas",
   "renderInteractiveForms": false,
   "enablePrintAutoRotate": false,
-  "disablePageMode": false,
+  "disablePageMode": true,
   "disablePageLabels": false
 }

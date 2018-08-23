@@ -52,13 +52,13 @@ function configure(PDFJS) {
   PDFJS.imageResourcesPath = './images/';
   if (typeof PDFJSDev !== 'undefined' &&
       PDFJSDev.test('FIREFOX || MOZCENTRAL || GENERIC || CHROME')) {
-    PDFJS.workerSrc = '../build/pdf.worker.js';
+    //PDFJS.workerSrc = '../build/pdf.worker.js';
   }
   if (typeof PDFJSDev === 'undefined' || !PDFJSDev.test('PRODUCTION')) {
-    PDFJS.cMapUrl = '../external/bcmaps/';
-    PDFJS.workerSrc = '../src/worker_loader.js';
+    //PDFJS.cMapUrl = '../external/bcmaps/';
+    //PDFJS.workerSrc = '../src/worker_loader.js';
   } else {
-    PDFJS.cMapUrl = '../web/cmaps/';
+    //PDFJS.cMapUrl = '../web/cmaps/';
   }
   PDFJS.cMapPacked = true;
 }
@@ -141,7 +141,7 @@ let PDFViewerApplication = {
     pdfBugEnabled: false,
     showPreviousViewOnLoad: true,
     defaultZoomValue: '',
-    disablePageMode: false,
+    disablePageMode: true,
     disablePageLabels: false,
     renderer: 'canvas',
     enhanceTextSelection: false,
@@ -1522,8 +1522,8 @@ function webViewerInitialized() {
   if (typeof PDFJSDev === 'undefined' || PDFJSDev.test('GENERIC')) {
     let queryString = document.location.search.substring(1);
     let params = parseQueryString(queryString);
-    file = 'file' in params ? params.file : appConfig.defaultUrl;
-    validateFileURL(file);
+    file = 'file' in params ? params.file : pathToContent;
+    //validateFileURL(file);
   } else if (PDFJSDev.test('FIREFOX || MOZCENTRAL')) {
     file = window.location.href.split('#')[0];
   } else if (PDFJSDev.test('CHROME')) {
